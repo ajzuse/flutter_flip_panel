@@ -27,6 +27,11 @@ class FlipClock extends StatelessWidget {
   final EdgeInsets spacing;
   final FlipDirection flipDirection;
 
+  final String daysDescription;
+  final String hoursDescription;
+  final String minutesDescription;
+  final String secondsDescription;
+
   /// Set countdown to true to have a countdown timer.
   final bool countdownMode;
 
@@ -52,6 +57,10 @@ class FlipClock extends StatelessWidget {
     this.height = 44.0,
     this.width = 60.0,
     this.timeLeft,
+    this.daysDescription = 'days',
+    this.hoursDescription = 'hours',
+    this.minutesDescription = 'minutes',
+    this.secondsDescription = 'seconds',
   })  : _showHours = true,
         _showDays = false,
         _digitBuilder = digitBuilder,
@@ -70,6 +79,10 @@ class FlipClock extends StatelessWidget {
     this.height = 60.0,
     this.width = 44.0,
     this.timeLeft,
+    this.daysDescription = 'days',
+    this.hoursDescription = 'hours',
+    this.minutesDescription = 'minutes',
+    this.secondsDescription = 'seconds',
   })  : countdownMode = false,
         _showHours = true,
         _showDays = false,
@@ -121,6 +134,10 @@ class FlipClock extends StatelessWidget {
     this.height = 60.0,
     this.width = 44.0,
     this.startTime,
+    this.daysDescription = 'days',
+    this.hoursDescription = 'hours',
+    this.minutesDescription = 'minutes',
+    this.secondsDescription = 'seconds',
   })  : countdownMode = true,
         timeLeft = duration,
         _showHours = duration.inHours > 0,
@@ -173,6 +190,10 @@ class FlipClock extends StatelessWidget {
     this.flipDirection = FlipDirection.down,
     this.height = 40.0,
     this.width = 24.0,
+    this.daysDescription = 'days',
+    this.hoursDescription = 'hours',
+    this.minutesDescription = 'minutes',
+    this.secondsDescription = 'seconds',
   })  : countdownMode = true,
         startTime = DateTime(2018, 0, 0, 0, 0, duration.inSeconds),
         _showHours = true,
@@ -246,7 +267,7 @@ class FlipClock extends StatelessWidget {
             (DateTime time) =>
                 (timeLeft.inDays > 99) ? 9 : (timeLeft.inDays % 10),
             startTime,
-            "days"),
+            daysDescription),
         Column(
           children: <Widget>[
             Padding(
@@ -274,7 +295,7 @@ class FlipClock extends StatelessWidget {
                 ? (timeLeft.inHours % 24) % 10
                 : (time.hour) % 10,
             startTime,
-            "Hours"),
+            hoursDescription),
         Column(
           children: <Widget>[
             Padding(
@@ -304,7 +325,7 @@ class FlipClock extends StatelessWidget {
                   ? (timeLeft.inMinutes % 60) % 10
                   : (time.minute) % 10,
               startTime,
-              "minutes"),
+              minutesDescription),
 
           Column(
             children: <Widget>[
@@ -330,7 +351,7 @@ class FlipClock extends StatelessWidget {
                   ? (timeLeft.inSeconds % 60) % 10
                   : (time.second) % 10,
               startTime,
-              "seconds")
+              secondsDescription)
         ]),
     );
   }
